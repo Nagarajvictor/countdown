@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Countdown Timer</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+ div {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      h1 {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 120px;
+        position: absolute;
+        top: 350px;
+        left: 770px;
+      }
+      body {
+        background-image: url("bk.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>00:00</h1>
+    </div>
+    <!-- JS -->
+    <script>
+      let timeSecond = 59;
+
+      const time = document.querySelector("h1");
+
+      displayTimer(timeSecond);
+      
+      const countDown = setInterval(() => {
+        timeSecond--;
+        displayTimer(timeSecond);
+        if (timeSecond == 0 || timeSecond < 1) {
+          end();
+        }
+      }, 1000);
+//display timer
+      function displayTimer(second) {
+        const min = Math.floor(second / 60);
+        const sec = Math.floor(second % 60);
+        time.innerText = `
+  ${min < 10 ? "0" : ""}${min}:${sec < 10 ? "0" : ""}${sec}
+  `;
+      }
+
+      function end() {
+        time.innerText = "Time out";
+      }
+    </script>
+  </body>
+</html>
